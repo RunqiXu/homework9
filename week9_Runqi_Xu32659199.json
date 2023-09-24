@@ -1,0 +1,45 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 800,
+    "height": 450,
+    "title": "Summary of temperatures in 194 national capitals from 2018 to 2022",
+    "projection": {"type": "equalEarth"},
+    "layer": [
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/RunqiXu/homework9/main/WorldMapWithGraticules.topojson",
+          "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+        },
+        "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
+      },
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/RunqiXu/homework9/main/WorldMapWithGraticules.topojson",
+          "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}
+        },
+        "mark": {"type": "geoshape", "fill": null, "stroke": "lightgray"}
+      },
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/RunqiXu/homework9/main/dataweek9aaa.csv"
+        },
+        "mark": {"type": "circle", "tooltip": {"content": "data"}},
+        "encoding": {
+          "longitude": {"field": "Longitude", "type": "quantitative"},
+          "latitude": {"field": "Latitude", "type": "quantitative"},
+           "size": {
+            "field": "tavg",
+            "type": "quantitative",
+            "title": "normalized average temperaturenormalized",
+            "scale": {"domain": [-1, 1]}
+          },
+          "color": {
+            "field": "tavg",
+            "type": "quantitative",
+            "title": "normalized average temperature",
+            "scale": {"scheme": "reds"}
+          }
+        }
+      }
+    ]
+  }
